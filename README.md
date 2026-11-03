@@ -5,7 +5,7 @@ This work did not previously support reasoning models such as the new OpenAI mod
 I found it necessary to add support for reasoning models due to their superior ability to generate code and planning.
 Additionally, not everyone has the capability to run large models locally as was done in this work.
 
-I have updated the code to support the new OpenAI models such as GPT-6-Astra, etc.
+I have updated the code and the readme to support the new OpenAI models such as GPT-6-Astra, etc.
 You still need to add your own OpenAI API key in the .env file.
 
 You also still need to review `data/new-site.jsonl` and update your instructions for the agent to work properly.
@@ -166,43 +166,7 @@ Official references: [GPT-6 compatibility](https://developers.openai.com/api/doc
 [reasoning state](https://developers.openai.com/api/docs/guides/reasoning), and
 [GPT-6 Astra](https://developers.openai.com/api/docs/models/gpt-6-astra).
 
-### Restaurant voucher platform requirements (v2)
 
-`data/new-site.jsonl` now specifies the Egypt voucher platform with explicit
-financial, ownership, security, operational and delivery requirements. It contains
-20 browser acceptance criteria (`UI01`–`UI20`) and 40 backend criteria
-(`BE01`–`BE40`). These are acceptance specifications, not implemented application
-tests or evidence of production readiness.
-
-Both batch runners call `src/generation_input.py` to pass the main instruction,
-policy defaults, required data structures, and acceptance criteria to the dev
-agent. Previously they passed only the instruction. Instruction-only inputs
-remain supported. The generation request requires executable application tests
-and an `acceptance-results.json` report with PASS/FAIL/NOT_RUN and real evidence.
-A separate review must check those results; the runner does not independently
-execute all supplied acceptance criteria just by including them in the prompt.
-
-The initial policies are explicit **demo defaults**:
-
-- EGP amounts are integer piastres; demo limits are EGP 10,000 per top-up/purchase
-  and EGP 50,000 per wallet.
-- Vouchers have no automatic expiry; configured expiry applies to future issues.
-- Gift links expire after seven days. Claiming transfers current ownership;
-  pending gifts block sender spending until claimed or revoked.
-- Each redemption needs current-holder approval for its exact restaurant and
-  amount; approvals expire after two minutes.
-- Unused voucher cancellation refunds the current holder's platform wallet;
-  partially redeemed refunds require support review.
-- Merchant earnings come from completed redemptions. Demo commission is zero,
-  with weekly simulated payouts and a minimum of one piastre.
-- Real payment/payout providers are unconfigured and live money operations stay
-  disabled until integration, configuration, business approvals and launch checks
-  are complete. Demo balances and records cannot become live funds.
-
-The coupled launcher's default run tag is `voucher-v2-responses`, keeping the new
-specification's output separate from earlier generation attempts. You may override
-`TAG` for another fresh run. The model default remains `gpt-6-astra`; this update
-does not change reasoning settings.
 
 Check the specification and input wiring without running the dev agent:
 
