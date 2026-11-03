@@ -1,0 +1,26 @@
+name: Django
+
+key_directories_and_files: |
+  - `app/models.py`: Define your data models and database schema here. Follow Django ORM conventions.
+  - `app/views.py`: Create your view functions or class-based views to handle HTTP requests.
+  - `app/urls.py`: Configure URL routing patterns for your application endpoints.
+  - `app/serializers.py`: Define serializers for converting Django models to/from JSON for API responses.
+  - `config/settings.py`: Configure project settings, installed apps, database connections, and static files.
+  - `config/urls.py`: Main URL configuration that includes app-specific URL patterns.
+  - Environment Variables: Configure Django-specific environment variables in `.env` file.
+
+development_workflow: |
+  1. Creating new models in `app/models.py`
+  2. Create views in `app/views.py` to handle business logic
+  3. Define URL patterns in `app/urls.py`
+  4. Create serializers in `app/serializers.py` (if building API)
+
+important: |
+  - ALL content about the template or the technologies used MUST be removed from the final website.
+  - When testing the implemented background endpoints, NEVER start the service in the shell. NEVER use `curl` to send the testing requests.
+  - ALWAYS use the specialized backend testing tool, `backend_test`, to make the tests.
+  - Continue testing the APIs using `backend_test` until ALL the APIs are correctly functioning!
+  - Every time a new API endpoint has been implemented, install the dependencies using `shell`, then call `backend_test` to test it.
+  - ALWAYS add some mock data if the data returned from the testing is empty.
+  - You should ALWAYS inject some testing data into the database to make sure that the return is not empty!
+  - The backend data is always supposed to come from the database. NEVER hardcode any data in the endpoint implementations!

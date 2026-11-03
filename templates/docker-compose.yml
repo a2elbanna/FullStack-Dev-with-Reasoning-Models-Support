@@ -1,0 +1,24 @@
+services:
+  workspace:
+    image: webgen-agent-postgres:latest
+    tty: true
+    stdin_open: true
+    network_mode: host
+    command:
+    - sleep
+    - infinity
+    volumes:
+    - postgres_data:/var/lib/postgresql/14/main
+    environment:
+      DB_HOST: localhost
+      DB_PORT: 5432
+      DB_USERNAME: myappuser
+      DB_PASSWORD: myapppassword
+      DB_NAME: myapp
+volumes:
+  postgres_data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: /mnt/cache/agent/Zimu/WebGen-Agent2/logs_root/model-deepseek-chat_hist-100_iter-200_compress-0.25_val-5_sum-5_fbd_bt-tmux_val/000001/db

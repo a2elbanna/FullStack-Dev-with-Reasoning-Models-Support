@@ -1,0 +1,26 @@
+{
+    "backend_templates": {
+        "nestjs": {
+            "name": "NestJS",
+            "description": "A structured Node.js backend template based on TypeScript and dependency injection, well-suited for scalable APIs and service-oriented architectures.",
+            "config_file": "nestjs.yml"
+        },
+        "django": {
+            "name": "Django",
+            "description": "A batteries-included Python backend template with built-in ORM, authentication, and admin interface, ideal for data-driven and CRUD-heavy applications.",
+            "config_file": "django.yml"
+        }
+    },
+    "frontend_templates": {
+        "nextjs": {
+            "name": "Next.js",
+            "description": "A React-based frontend template supporting server-side rendering and static generation, designed for SEO-friendly and production-grade web applications.",
+            "config_file": "nextjs.yml"
+        },
+        "vue": {
+            "name": "Vue",
+            "description": "A lightweight and progressive frontend template emphasizing simplicity and reactivity, suitable for rapid development and interactive user interfaces.",
+            "config_file": "vue.yml"
+        }
+    }
+}

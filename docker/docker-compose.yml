@@ -1,0 +1,43 @@
+# docker-compose.yml
+# (no `version:` line – it is obsolete)
+
+services:
+  # ────────────────────────────── PostgreSQL ──────────────────────────────
+  postgres:
+    image: postgres:13
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: myapp
+      POSTGRES_USER: myappuser
+      POSTGRES_PASSWORD: myapppassword
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    # optional: expose to your Windows host on 5432
+    # ports:
+    #   - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER:-postgres}"]
+      interval: 5s
+      retries: 5
+
+  # ─────────────────────────────── Workspace ──────────────────────────────
+  workspace:
+    image: webgen-agent:latest
+    tty: true
+    stdin_open: true
+    command: ["sleep", "infinity"]      # keep the container running
+    volumes:
+      - D:\research\WebGen-Plus\WebGen-Agent2\workspaces_root\test_project2:/workspace
+    environment:
+      # DB connection settings used by your Nest / TypeORM code
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_USERNAME: myappuser
+      DB_PASSWORD: myapppassword
+      DB_NAME: myapp
+    depends_on:
+      postgres:
+        condition: service_healthy       # wait until pg_isready succeeds
+
+volumes:
+  postgres_data:

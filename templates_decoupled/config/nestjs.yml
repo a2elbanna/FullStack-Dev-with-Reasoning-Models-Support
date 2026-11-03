@@ -1,0 +1,36 @@
+name: NestJS
+
+key_directories_and_files: |
+  - `backend/src/<module-name>`: Create new NestJS modules here for your features, each containing controllers, services, and entities.
+  - Controllers (`*.controller.ts`): Define your REST API endpoints.
+  - Services (`*.service.ts`): Implement your business logic.
+  - Entities (`*.entity.ts`): Define your data models and database schema using TypeORM.
+  - Database Configuration: Adjust database settings in `backend/src/app.module.ts` or via `backend/.env`.
+  - DTOs (`dto/*.dto.ts`): Define data transfer objects for validation and type safety.
+
+development_workflow: |
+  1. Creating new module directory (`backend/src/<module-name>`)
+  2. Generate controller and service (`*.controller.ts`, `*.service.ts`)
+  3. Create entity (if needed; `*.entity.ts`)
+
+important: |
+  - Notice that a global prefix `/api/` has been set in `backend/src/main.ts`, so don't add it again in individual endpoints:
+    ```
+    app.setGlobalPrefix('api');
+    ```
+  - Route-Order CAUTION:
+    - Always declare fixed/static routes BEFORE parameterised routes.
+      Example:
+        @Get('search')   // static, goes first
+        search() {{ ... }}
+        @Get(':id')      // dynamic, goes after the static route
+        findOne() {{ ... }}
+    - Symptom if you forget: 
+      - If you place `:id` first, calling “…/search” throws would try to match the string 'search' to `:id`, which will cause an error.
+      - If you encounter a validation error and the type validations all seem correct, this might be the reason.
+  - When testing the implemented background endpoints, NEVER start the service in the shell. NEVER use `curl` to send the testing requests.
+  - ALWAYS use the specialized backend testing tool, `backend_test`, to make the tests.
+  - Continue testing the APIs using `backend_test` until ALL the APIs are correctly functioning!
+  - Every time a new API endpoint has been implemented, install the dependencies using `shell`, then call `backend_test` to test it.
+  - ALWAYS add some mock data if the data returned from the testing is empty.
+  - You should ALWAYS inject some testing data into the database to make sure that the return is not empty!

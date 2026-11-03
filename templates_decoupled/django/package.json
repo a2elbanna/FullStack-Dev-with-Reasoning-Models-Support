@@ -1,0 +1,27 @@
+{
+  "name": "django-backend",
+  "version": "1.0.0",
+  "description": "Django backend for the Next.js Django PostgreSQL project",
+  "main": "index.js",
+  "scripts": {
+    "start": "python manage.py migrate && python manage.py runserver 0.0.0.0:3001",
+    "dev": "python manage.py migrate && python manage.py runserver 3001",
+    "migrate": "python manage.py migrate",
+    "makemigrations": "python manage.py makemigrations",
+    "createsuperuser": "python manage.py createsuperuser",
+    "collectstatic": "python manage.py collectstatic --noinput",
+    "script:install": "pip install -r requirements.txt"
+  },
+  "keywords": [
+    "django",
+    "python",
+    "postgresql",
+    "backend",
+    "api"
+  ],
+  "author": "WebGen-Agent",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

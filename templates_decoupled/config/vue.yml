@@ -1,0 +1,19 @@
+name: Vue
+
+key_directories_and_files: |
+  - `src/views`: Create new pages or modify existing ones here. These are typically route components.
+  - `src/components`: Build reusable UI components in this directory.
+  - `src/router`: Configure Vue Router settings and define route mappings in `index.ts`.
+  - `src/stores`: Manage application state using Pinia stores (e.g., `counter.ts` for counter store).
+  - `src/services`: Place API utilities and service functions for interacting with your backend here.
+  - Environment Variables: Configure frontend-specific environment variables in `.env` file.
+
+coloring: |
+  - The color of the background and components of ALL the pages must fit the color described in the **user instruction**.
+  - The color MUST have obvious contrast. For example, a light-colored component must have dark-colored text, and a dark-colored component must have light-colored text. The components and the background color must have similar contrast.
+  - You should modify the tailwindcss classes and configurations in the codebase.
+
+important: |
+  - When importing tailwind in files such as `src/assets/css/main.css`, ALWAYS use the new Tailwind import syntax `@import "tailwindcss";` at the start of the file.
+  - Do NOT use the three lines of old Tailwind import syntax `@tailwind base;`, `@tailwind components;`, and `@tailwind utilities;`. They will cause rendering failures and jumbled pages.
+  - ALL content about the template or the technologies used MUST be removed from the final website.
