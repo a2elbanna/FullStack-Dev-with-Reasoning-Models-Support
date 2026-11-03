@@ -8,11 +8,15 @@ Additionally, not everyone has the capability to run large models locally as was
 I have updated the code to support the new OpenAI models such as GPT-6-Astra, etc.
 You still need to add your own OpenAI API key in the .env file.
 
-You also still need to review 'data/new-site.jsonl' and update your instructions for the agent to work properly.
+You also still need to review `data/new-site.jsonl` and update your instructions for the agent to work properly.
 
 The agents will iterate 400 times to generate the website. However, you can still change the number of iterations in the run_batch.sh file.
 
-This project is ready to run after you update the instruction to match your website in the jsonl file, all what you need is to run the src/run/run_batch.sh
+This project is ready to run after you update the instruction to match your website in the jsonl file, all what you need is to run the `src/run/run_batch.sh`, but before you run it do not forget to update your working root and log root paths in the run_batch.sh file.
+```bash
+WORKING_ROOT=""
+LOG_ROOT=""
+```
 
 Good luck and have fun!
 
